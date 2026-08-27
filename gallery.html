@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Photo gallery, video gallery, and before/after skin treatment gallery at Akshar Hospital, Ahmedabad."/>
+  <title>Gallery | Akshar Hospital – Ahmedabad</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>"/>
+  <style>
+    .gallery-tabs { display:flex; gap:0.75rem; margin-bottom:2.5rem; border-bottom:2px solid var(--border); padding-bottom:0; }
+    .gallery-tab { padding:0.75em 1.5em; font-family:var(--font-head); font-size:0.9rem; font-weight:600; cursor:pointer; color:var(--text-muted); border:none; background:none; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
+    .gallery-tab.active { color:var(--primary); border-bottom-color:var(--primary); }
+    .gallery-panel { display:none; }
+    .gallery-panel.active { display:block; }
+    .video-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:1.5rem; }
+    .video-embed { border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-card); aspect-ratio:16/9; }
+    .video-embed iframe { width:100%; height:100%; border:none; }
+    .before-after-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2rem; }
+    .ba-card { background:var(--white); border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-card); }
+    .ba-images { display:grid; grid-template-columns:1fr 1fr; }
+    .ba-label { text-align:center; font-size:0.7rem; font-weight:700; letter-spacing:0.05em; text-transform:uppercase; padding:0.5rem; }
+    .ba-before { background:#FDECEA; color:#C0392B; }
+    .ba-after { background:#D4EDDA; color:#155724; }
+    .ba-img { width:100%; aspect-ratio:1; object-fit:cover; }
+    .ba-info { padding:1rem 1.25rem; }
+    .ba-title { font-weight:700; color:var(--primary-dark); font-size:0.9rem; margin-bottom:0.25rem; }
+    .ba-sub { font-size:0.78rem; color:var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+<main>
+<section class="page-hero" aria-labelledby="gallery-heading">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Gallery</span></nav>
+    <div class="page-hero-label">Visual Tour</div>
+    <h1 id="gallery-heading">Gallery</h1>
+    <p>A visual tour of our hospital, our team, our procedures, and our patient results.</p>
+  </div>
+</section>
+
+<section class="section" aria-label="Gallery content">
+  <div class="container">
+    <!-- Tabs -->
+    <div class="gallery-tabs" role="tablist" aria-label="Gallery sections">
+      <button class="gallery-tab active" data-panel="photos" role="tab" aria-selected="true" id="tab-photos">📷 Photo Gallery</button>
+      <button class="gallery-tab" data-panel="videos" role="tab" aria-selected="false" id="tab-videos">🎥 Video Gallery</button>
+      <button class="gallery-tab" data-panel="before-after" role="tab" aria-selected="false" id="tab-ba">✨ Before &amp; After</button>
+    </div>
+
+    <!-- Photo Gallery -->
+    <div class="gallery-panel active" id="panel-photos" role="tabpanel" aria-labelledby="tab-photos">
+      <p style="color:var(--text-muted);margin-bottom:2rem;">Click any image to view full-size. Use arrow keys to navigate.</p>
+      <div class="gallery-grid" id="photo-gallery-grid"></div>
+    </div>
+
+    <!-- Video Gallery -->
+    <div class="gallery-panel" id="panel-videos" role="tabpanel" aria-labelledby="tab-videos">
+      <p style="color:var(--text-muted);margin-bottom:2rem;">Watch patient testimonials, procedure explanations, and facility tours.</p>
+      <div class="video-grid">
+        <div class="reveal delay-1">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Akshar Hospital – Welcome Tour" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div style="padding:1rem 0;">
+            <h3 style="font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary-dark);">Hospital Facility Tour</h3>
+            <p style="font-size:0.825rem;color:var(--text-muted);">A complete walkthrough of our OT, ICU, physiotherapy unit, and patient rooms.</p>
+          </div>
+        </div>
+        <div class="reveal delay-2">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Dr. Rajesh Patel – Knee Replacement Explained" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div style="padding:1rem 0;">
+            <h3 style="font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary-dark);">Knee Replacement — What to Expect</h3>
+            <p style="font-size:0.825rem;color:var(--text-muted);">Dr. Rajesh Patel walks you through the complete knee replacement journey.</p>
+          </div>
+        </div>
+        <div class="reveal delay-3">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Patient Testimonial – ACL Surgery" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div style="padding:1rem 0;">
+            <h3 style="font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary-dark);">Patient Story: ACL Reconstruction</h3>
+            <p style="font-size:0.825rem;color:var(--text-muted);">Cricketer Arjun Shah shares his journey from injury to return-to-play.</p>
+          </div>
+        </div>
+        <div class="reveal delay-1">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Laser Skin Treatment – Dr. Priya Sharma" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div style="padding:1rem 0;">
+            <h3 style="font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary-dark);">Laser Skin Treatment Explained</h3>
+            <p style="font-size:0.825rem;color:var(--text-muted);">Dr. Priya Sharma explains what to expect during and after laser therapy.</p>
+          </div>
+        </div>
+        <div class="reveal delay-2">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="PRP Hair Treatment – Dr. Kiran Desai" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div style="padding:1rem 0;">
+            <h3 style="font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary-dark);">PRP Hair Treatment Procedure</h3>
+            <p style="font-size:0.825rem;color:var(--text-muted);">Dr. Kiran Desai demonstrates the PRP hair restoration therapy step by step.</p>
+          </div>
+        </div>
+        <div class="reveal delay-3">
+          <div class="video-embed">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Spine Care – Dr. Anita Menon" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div style="padding:1rem 0;">
+            <h3 style="font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--primary-dark);">Understanding Spine Pain</h3>
+            <p style="font-size:0.825rem;color:var(--text-muted);">Dr. Anita Menon explains common spine conditions and when to seek specialist care.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Before & After -->
+    <div class="gallery-panel" id="panel-before-after" role="tabpanel" aria-labelledby="tab-ba">
+      <div style="background:var(--teal-50);border-radius:var(--radius-lg);padding:1.25rem 1.5rem;margin-bottom:2rem;display:flex;gap:0.75rem;align-items:flex-start;">
+        <span style="font-size:1.5rem;flex-shrink:0;">ℹ️</span>
+        <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.7;margin:0;">Before &amp; after images are shown with patient consent and are representative results. Individual outcomes may vary based on skin type, severity of condition, and adherence to treatment. All procedures performed by qualified dermatologists only.</p>
+      </div>
+      <div class="before-after-grid">
+        <!-- BA Cards -->
+        <div class="ba-card reveal delay-1">
+          <div class="ba-images">
+            <div>
+              <img class="ba-img" src="images/dr-kiran-desai.jpg" alt="Before – Acne treatment" loading="lazy"/>
+              <div class="ba-label ba-before">Before</div>
+            </div>
+            <div>
+              <img class="ba-img" src="images/dr-priya-sharma.jpg" alt="After – Acne treatment" loading="lazy"/>
+              <div class="ba-label ba-after">After</div>
+            </div>
+          </div>
+          <div class="ba-info">
+            <div class="ba-title">Severe Acne Treatment</div>
+            <div class="ba-sub">3-month protocol · Chemical peels + medical therapy</div>
+          </div>
+        </div>
+        <div class="ba-card reveal delay-2">
+          <div class="ba-images">
+            <div>
+              <img class="ba-img" src="images/dr-kiran-desai.jpg" alt="Before – Hair loss" loading="lazy"/>
+              <div class="ba-label ba-before">Before</div>
+            </div>
+            <div>
+              <img class="ba-img" src="images/dr-priya-sharma.jpg" alt="After – Hair loss" loading="lazy"/>
+              <div class="ba-label ba-after">After</div>
+            </div>
+          </div>
+          <div class="ba-info">
+            <div class="ba-title">Hair Loss – PRP Therapy</div>
+            <div class="ba-sub">6 PRP sessions over 6 months · Significant regrowth</div>
+          </div>
+        </div>
+        <div class="ba-card reveal delay-3">
+          <div class="ba-images">
+            <div>
+              <img class="ba-img" src="images/dr-kiran-desai.jpg" alt="Before – Skin pigmentation" loading="lazy"/>
+              <div class="ba-label ba-before">Before</div>
+            </div>
+            <div>
+              <img class="ba-img" src="images/dr-priya-sharma.jpg" alt="After – Skin pigmentation" loading="lazy"/>
+              <div class="ba-label ba-after">After</div>
+            </div>
+          </div>
+          <div class="ba-info">
+            <div class="ba-title">Pigmentation / Melasma</div>
+            <div class="ba-sub">Q-switch laser + peels · 4-session protocol</div>
+          </div>
+        </div>
+        <div class="ba-card reveal delay-1">
+          <div class="ba-images">
+            <div>
+              <img class="ba-img" src="images/dr-kiran-desai.jpg" alt="Before – Acne scars" loading="lazy"/>
+              <div class="ba-label ba-before">Before</div>
+            </div>
+            <div>
+              <img class="ba-img" src="images/dr-priya-sharma.jpg" alt="After – Acne scars" loading="lazy"/>
+              <div class="ba-label ba-after">After</div>
+            </div>
+          </div>
+          <div class="ba-info">
+            <div class="ba-title">Acne Scar Resurfacing</div>
+            <div class="ba-sub">Fractional CO2 laser · 3 sessions · Marked improvement</div>
+          </div>
+        </div>
+        <div class="ba-card reveal delay-2">
+          <div class="ba-images">
+            <div>
+              <img class="ba-img" src="images/dr-kiran-desai.jpg" alt="Before – Anti-aging" loading="lazy"/>
+              <div class="ba-label ba-before">Before</div>
+            </div>
+            <div>
+              <img class="ba-img" src="images/dr-priya-sharma.jpg" alt="After – Anti-aging" loading="lazy"/>
+              <div class="ba-label ba-after">After</div>
+            </div>
+          </div>
+          <div class="ba-info">
+            <div class="ba-title">Anti-aging &amp; Skin Tightening</div>
+            <div class="ba-sub">HIFU + RF Microneedling · Non-surgical facelift effect</div>
+          </div>
+        </div>
+        <div class="ba-card reveal delay-3">
+          <div class="ba-images">
+            <div>
+              <img class="ba-img" src="images/dr-kiran-desai.jpg" alt="Before – Vitiligo" loading="lazy"/>
+              <div class="ba-label ba-before">Before</div>
+            </div>
+            <div>
+              <img class="ba-img" src="images/dr-priya-sharma.jpg" alt="After – Vitiligo" loading="lazy"/>
+              <div class="ba-label ba-after">After</div>
+            </div>
+          </div>
+          <div class="ba-info">
+            <div class="ba-title">Vitiligo Repigmentation</div>
+            <div class="ba-sub">NB-UVB phototherapy · 6-month treatment</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center;margin-top:4rem;padding:2.5rem;background:var(--teal-50);border-radius:var(--radius-xl);" class="reveal">
+      <h3 style="font-family:var(--font-head);font-size:1.25rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.5rem;">Inspired by Our Results?</h3>
+      <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1.5rem;">Book a free skin or orthopedic consultation to discuss your goals with our specialists.</p>
+      <a href="appointment.html" class="btn btn-primary" id="gallery-book-btn">Book a Consultation →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="footer-root"></div>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-root').innerHTML = renderHeader('gallery');
+  document.getElementById('footer-root').innerHTML = renderFooter();
+
+  // Tab switching
+  document.querySelectorAll('.gallery-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.gallery-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.gallery-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+    });
+  });
+
+  // Photo gallery
+  const galleryImages = [
+    { src:'images/hero.jpg',          alt:'Hospital Reception & Lobby' },
+    { src:'images/facility-ot.jpg',   alt:'Modern Operation Theatre' },
+    { src:'images/dr-rajesh-patel.jpg', alt:'Dr. Rajesh Patel – Orthopedic Surgeon' },
+    { src:'images/dr-priya-sharma.jpg', alt:'Dr. Priya Sharma – Dermatologist' },
+    { src:'images/dr-anita-menon.jpg',  alt:'Dr. Anita Menon – Spine Surgeon' },
+    { src:'images/dr-kiran-desai.jpg',  alt:'Dr. Kiran Desai – Dermatologist' },
+    { src:'images/facility-icu.jpg',   alt:'ICU / High Dependency Unit' },
+    { src:'images/facility-emergency.jpg', alt:'Emergency Trauma Ward' },
+    { src:'images/facility-xray.jpg',  alt:'Digital X-ray & Diagnostics' },
+    { src:'images/facility-waiting.jpg', alt:'Patient Waiting Area' },
+    { src:'images/hero.jpg',           alt:'Physiotherapy Centre' },
+    { src:'images/facility-ot.jpg',    alt:'Surgical Theatre Setup' },
+  ];
+
+  document.getElementById('photo-gallery-grid').innerHTML = galleryImages.map(img => `
+    <div class="gallery-item reveal" data-lightbox data-src="${img.src}" role="button" aria-label="View: ${img.alt}" tabindex="0">
+      <img src="${img.src}" alt="${img.alt}" loading="lazy"/>
+      <div class="gallery-overlay" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+      </div>
+    </div>
+  `).join('');
+</script>
+</body>
+</html>

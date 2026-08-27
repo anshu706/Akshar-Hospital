@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Akshar Hospital infrastructure and facilities – Operation Theatre, ICU, Emergency Ward, Physiotherapy, X-ray, Special Rooms, Ambulance, and Parking."/>
+  <title>Facilities & Infrastructure | Akshar Hospital – Ahmedabad</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>"/>
+  <style>
+    .facility-detail { display:grid; grid-template-columns:1fr 420px; gap:3.5rem; align-items:center; padding:3.5rem 0; border-bottom:1px solid var(--border); }
+    .facility-detail:nth-child(even) { direction:rtl; }
+    .facility-detail:nth-child(even) > * { direction:ltr; }
+    .facility-detail:last-child { border:none; }
+    .facility-detail img { border-radius:var(--radius-xl); box-shadow:var(--shadow-lg); width:100%; aspect-ratio:4/3; object-fit:cover; }
+    .facility-detail-icon { width:60px; height:60px; background:var(--teal-50); border-radius:var(--radius-lg); display:flex; align-items:center; justify-content:center; font-size:1.75rem; margin-bottom:1.25rem; }
+    @media(max-width:900px){ .facility-detail, .facility-detail:nth-child(even) { grid-template-columns:1fr; direction:ltr; } }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+<main>
+<section class="page-hero" aria-labelledby="facility-heading">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="about.html">About</a><span class="breadcrumb-sep">›</span><span aria-current="page">Infrastructure</span></nav>
+    <div class="page-hero-label">Our Infrastructure</div>
+    <h1 id="facility-heading">World-Class Facilities at Akshar Hospital</h1>
+    <p>Designed for safety, comfort, and clinical excellence — every space at Akshar Hospital serves a purpose.</p>
+  </div>
+</section>
+
+<!-- Quick Nav -->
+<section style="background:var(--white);padding:1.5rem 0;border-bottom:1px solid var(--border);position:sticky;top:var(--header-h);z-index:100;" aria-label="Facility quick navigation">
+  <div class="container">
+    <div style="display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center;" role="list">
+      <a href="#ot" class="badge badge-primary" style="padding:0.4em 0.9em;font-size:0.8rem;cursor:pointer;">🏥 OT</a>
+      <a href="#icu" class="badge badge-primary" style="padding:0.4em 0.9em;font-size:0.8rem;cursor:pointer;">💓 ICU</a>
+      <a href="#emergency" class="badge badge-primary" style="padding:0.4em 0.9em;font-size:0.8rem;cursor:pointer;">🚨 Emergency</a>
+      <a href="#physiotherapy" class="badge badge-primary" style="padding:0.4em 0.9em;font-size:0.8rem;cursor:pointer;">🏃 Physio</a>
+      <a href="#diagnostics" class="badge badge-primary" style="padding:0.4em 0.9em;font-size:0.8rem;cursor:pointer;">🔬 Diagnostics</a>
+      <a href="#rooms" class="badge badge-primary" style="padding:0.4em 0.9em;font-size:0.8rem;cursor:pointer;">🛏️ Rooms</a>
+      <a href="#waiting" class="badge badge-primary" style="padding:0.4em 0.9em;font-size:0.8rem;cursor:pointer;">🌿 Waiting</a>
+      <a href="#ambulance" class="badge badge-primary" style="padding:0.4em 0.9em;font-size:0.8rem;cursor:pointer;">🚑 Ambulance</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" aria-label="Facility details">
+  <div class="container">
+
+    <div id="ot" class="facility-detail reveal">
+      <div>
+        <div class="facility-detail-icon">🏥</div>
+        <h2 style="font-family:var(--font-head);font-size:1.75rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.75rem;">Operation Theatre (OT)</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">Three fully equipped modular OTs with positive-pressure laminar airflow HEPA filtration, 4K HD arthroscopy towers, C-arm fluoroscopy, and advanced anaesthesia workstations. Designed to NABH and ISO 9001 standards.</p>
+        <ul style="color:var(--text-muted);font-size:0.875rem;line-height:2;padding-left:1.25rem;">
+          <li>3 Independent modular OTs with dedicated scrub areas</li>
+          <li>Laminar-flow positive pressure ventilation (ISO 5 air class)</li>
+          <li>HD Arthroscopy tower (4K resolution, Stryker)</li>
+          <li>Navigation system for joint replacement</li>
+          <li>Integrated surgical lighting (shadow-free LED)</li>
+          <li>On-call anaesthesiology team 24/7</li>
+        </ul>
+      </div>
+      <img src="images/facility-ot.jpg" alt="Akshar Hospital Modern Operation Theatre" loading="lazy"/>
+    </div>
+
+    <div id="icu" class="facility-detail reveal">
+      <div>
+        <div class="facility-detail-icon">💓</div>
+        <h2 style="font-family:var(--font-head);font-size:1.75rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.75rem;">ICU / High Dependency Unit (HDU)</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">8-bed ICU and 4-bed HDU with 24/7 dedicated intensivist cover, advanced multi-parameter monitors, mechanical ventilators, and a patient-family communication protocol to keep loved ones informed at all times.</p>
+        <ul style="color:var(--text-muted);font-size:0.875rem;line-height:2;padding-left:1.25rem;">
+          <li>8 ICU beds + 4 HDU beds</li>
+          <li>24/7 intensivist and trained ICU nurse coverage</li>
+          <li>Advanced haemodynamic &amp; respiratory monitoring</li>
+          <li>Mechanical ventilators and BiPAP/CPAP</li>
+          <li>Central nursing station with real-time vitals display</li>
+          <li>Patient call system and relative communication protocol</li>
+        </ul>
+      </div>
+      <img src="images/facility-icu.jpg" alt="Akshar Hospital ICU" loading="lazy"/>
+    </div>
+
+    <div id="emergency" class="facility-detail reveal">
+      <div>
+        <div class="facility-detail-icon">🚨</div>
+        <h2 style="font-family:var(--font-head);font-size:1.75rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.75rem;">Emergency &amp; Trauma Ward</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">A dedicated round-the-clock emergency orthopaedic service with trauma resuscitation bays, ATLS-trained surgeons, and priority imaging. Walk-in and ambulance patients receive immediate triage and treatment.</p>
+        <ul style="color:var(--text-muted);font-size:0.875rem;line-height:2;padding-left:1.25rem;">
+          <li>24/7 on-call orthopaedic resident &amp; attending</li>
+          <li>2 trauma resuscitation bays</li>
+          <li>ATLS (Advanced Trauma Life Support) trained team</li>
+          <li>Immediate X-ray and digital imaging</li>
+          <li>Minor OT for emergency wound care &amp; casting</li>
+          <li>Direct escalation pathway to ICU and main OT</li>
+        </ul>
+      </div>
+      <img src="images/facility-emergency.jpg" alt="Akshar Hospital Emergency Ward" loading="lazy"/>
+    </div>
+
+    <div id="physiotherapy" class="facility-detail reveal">
+      <div>
+        <div class="facility-detail-icon">🏃</div>
+        <h2 style="font-family:var(--font-head);font-size:1.75rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.75rem;">Physiotherapy &amp; Rehabilitation Centre</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">A comprehensive 1,500 sq ft rehabilitation centre with specialised post-surgical recovery programmes, staffed by BPT/MPT qualified physiotherapists. Targeted for joint replacement, spine, and sports injury recovery.</p>
+        <ul style="color:var(--text-muted);font-size:0.875rem;line-height:2;padding-left:1.25rem;">
+          <li>Underwater treadmill (aquatherapy)</li>
+          <li>TENS, IFT &amp; EMS units</li>
+          <li>Therapeutic ultrasound</li>
+          <li>Wax bath &amp; hot pack therapy</li>
+          <li>Gait training aids &amp; parallel bars</li>
+          <li>Customised sports rehab protocols</li>
+          <li>Home physiotherapy programme guidance</li>
+        </ul>
+      </div>
+      <img src="images/hero.jpg" alt="Akshar Hospital Physiotherapy Centre" loading="lazy"/>
+    </div>
+
+    <div id="diagnostics" class="facility-detail reveal">
+      <div>
+        <div class="facility-detail-icon">🔬</div>
+        <h2 style="font-family:var(--font-head);font-size:1.75rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.75rem;">Diagnostics &amp; Imaging</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">On-site digital radiography for same-day bone and joint imaging, along with on-call radiology reporting. Seamless tie-ups for MRI, CT, and PET scans with same-day result availability for urgent cases.</p>
+        <ul style="color:var(--text-muted);font-size:0.875rem;line-height:2;padding-left:1.25rem;">
+          <li>Digital X-ray (DR) — same-day reporting</li>
+          <li>Portable bedside ultrasound</li>
+          <li>Dermatoscopy &amp; trichoscopy unit</li>
+          <li>On-site pathology lab (blood &amp; urine)</li>
+          <li>MRI / CT (tie-up centre nearby, same-day)</li>
+          <li>Bone densitometry (DEXA) referral available</li>
+        </ul>
+      </div>
+      <img src="images/facility-xray.jpg" alt="Akshar Hospital Diagnostics and X-ray" loading="lazy"/>
+    </div>
+
+    <div id="rooms" class="facility-detail reveal">
+      <div>
+        <div class="facility-detail-icon">🛏️</div>
+        <h2 style="font-family:var(--font-head);font-size:1.75rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.75rem;">Inpatient Rooms</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">A choice of private, semi-private, and general ward accommodation — all designed for clinical safety and patient comfort, with 24-hour nursing care and attendant facilities.</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem;">
+          <div style="padding:1rem;background:var(--teal-50);border-radius:var(--radius-md);">
+            <div style="font-weight:700;color:var(--primary-dark);margin-bottom:0.4rem;">Special Rooms</div>
+            <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">Private, AC, attached bath, TV, attendant sofa, fridge, nursing call button.</p>
+          </div>
+          <div style="padding:1rem;background:var(--bg-2);border-radius:var(--radius-md);">
+            <div style="font-weight:700;color:var(--primary-dark);margin-bottom:0.4rem;">Semi-Special</div>
+            <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">2-bed AC room, shared bath, TV, nursing call button.</p>
+          </div>
+          <div style="padding:1rem;background:var(--bg-2);border-radius:var(--radius-md);">
+            <div style="font-weight:700;color:var(--primary-dark);margin-bottom:0.4rem;">General Ward</div>
+            <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">6-bed ward, ceiling fans, locker, clean shared bathrooms.</p>
+          </div>
+          <div style="padding:1rem;background:var(--teal-50);border-radius:var(--radius-md);">
+            <div style="font-weight:700;color:var(--primary-dark);margin-bottom:0.4rem;">All Rooms</div>
+            <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">24/7 nursing call system, clean linen, meals &amp; dietary guidance.</p>
+          </div>
+        </div>
+      </div>
+      <img src="images/facility-waiting.jpg" alt="Akshar Hospital Patient Rooms" loading="lazy"/>
+    </div>
+
+    <div id="waiting" class="facility-detail reveal">
+      <div>
+        <div class="facility-detail-icon">🌿</div>
+        <h2 style="font-family:var(--font-head);font-size:1.75rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.75rem;">Waiting Area &amp; Reception</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">Our airy, plant-filled reception area is designed to calm anxiety and make your visit as comfortable as possible. Free Wi-Fi, dedicated seating, and a patient-assistance desk ensure you always feel supported.</p>
+        <ul style="color:var(--text-muted);font-size:0.875rem;line-height:2;padding-left:1.25rem;">
+          <li>Spacious, naturally lit waiting area</li>
+          <li>Complimentary Wi-Fi &amp; phone charging points</li>
+          <li>Purified drinking water dispensers</li>
+          <li>Dedicated patient-assistance &amp; billing desk</li>
+          <li>Wheelchair access &amp; lifts to all floors</li>
+          <li>Kids corner with books &amp; toys</li>
+        </ul>
+      </div>
+      <img src="images/facility-waiting.jpg" alt="Akshar Hospital Waiting Area" loading="lazy"/>
+    </div>
+
+    <div id="ambulance" class="facility-detail reveal">
+      <div>
+        <div class="facility-detail-icon">🚑</div>
+        <h2 style="font-family:var(--font-head);font-size:1.75rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.75rem;">Ambulance Service</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">ALS-equipped ambulances staffed with trained paramedics, available 24 hours a day, 7 days a week — for emergency response and inter-hospital patient transfers.</p>
+        <ul style="color:var(--text-muted);font-size:0.875rem;line-height:2;padding-left:1.25rem;">
+          <li>Advanced Life Support (ALS) ambulances</li>
+          <li>Cardiac monitor, defibrillator, portable ventilator</li>
+          <li>Trained paramedic crew on every trip</li>
+          <li>GPS-tracked fleet for real-time monitoring</li>
+          <li>Dedicated ambulance entrance &amp; bay</li>
+        </ul>
+        <a href="tel:+917940001234" class="btn btn-primary" style="margin-top:1.25rem;" id="amb-call-btn">📞 Call Ambulance: +91-79-4000-1234</a>
+      </div>
+      <img src="images/hero.jpg" alt="Akshar Hospital Ambulance" loading="lazy"/>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<div id="footer-root"></div>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-root').innerHTML = renderHeader('about');
+  document.getElementById('footer-root').innerHTML = renderFooter();
+</script>
+</body>
+</html>

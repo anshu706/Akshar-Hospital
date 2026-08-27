@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Book an appointment online at Akshar Hospital, Ahmedabad – choose your specialist doctor, preferred specialty, date and time. Quick confirmation within 2 hours."/>
+  <title>Book Appointment | Akshar Hospital – Ahmedabad</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>"/>
+  <style>
+    .appt-layout { display:grid; grid-template-columns:1fr 380px; gap:3.5rem; align-items:start; }
+    .appt-sidebar { position:sticky; top:calc(var(--header-h) + 1.5rem); }
+    .info-card { background:var(--white); border-radius:var(--radius-xl); padding:2rem; box-shadow:var(--shadow-card); margin-bottom:1.5rem; }
+    .info-row { display:flex; gap:1rem; align-items:flex-start; margin-bottom:1.25rem; font-size:0.875rem; color:var(--text-muted); }
+    .info-row:last-child { margin-bottom:0; }
+    .info-icon { width:36px; height:36px; background:var(--teal-50); border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; }
+    .step-indicator { display:flex; align-items:center; gap:0.5rem; margin-bottom:2.5rem; flex-wrap:wrap; }
+    .step { display:flex; align-items:center; gap:0.5rem; font-size:0.8rem; font-weight:600; color:var(--text-light); }
+    .step.active { color:var(--primary); }
+    .step.done { color:var(--success); }
+    .step-num { width:26px; height:26px; border-radius:50%; background:var(--border); display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; flex-shrink:0; }
+    .step.active .step-num { background:var(--primary); color:white; }
+    .step.done .step-num { background:var(--success); color:white; }
+    .step-sep { flex:1; height:2px; background:var(--border); min-width:20px; max-width:50px; }
+    .form-grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1.25rem; }
+    .doctor-selector { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .doc-option { border:2px solid var(--border); border-radius:var(--radius-lg); padding:1rem; cursor:pointer; transition:all 0.2s; display:flex; align-items:center; gap:0.75rem; }
+    .doc-option:hover { border-color:var(--primary); background:var(--teal-50); }
+    .doc-option input[type="radio"] { display:none; }
+    .doc-option.selected { border-color:var(--primary); background:var(--teal-50); }
+    .doc-option img { width:44px; height:44px; border-radius:50%; object-fit:cover; object-position:center top; flex-shrink:0; }
+    .doc-opt-name { font-size:0.825rem; font-weight:700; color:var(--primary-dark); }
+    .doc-opt-spec { font-size:0.72rem; color:var(--text-muted); }
+    @media(max-width:900px){ .appt-layout { grid-template-columns:1fr; } .appt-sidebar { position:static; } .form-grid-2 { grid-template-columns:1fr; } .doctor-selector { grid-template-columns:1fr 1fr; } }
+    @media(max-width:480px){ .doctor-selector { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<main>
+<section class="page-hero" aria-labelledby="appt-heading">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Book Appointment</span></nav>
+    <div class="page-hero-label">Hassle-Free Booking</div>
+    <h1 id="appt-heading">Book an Appointment</h1>
+    <p>Fill in your details below and our team will confirm your slot within 2 hours. No referral needed.</p>
+  </div>
+</section>
+
+<section class="section" aria-label="Appointment booking form">
+  <div class="container">
+    <div class="appt-layout">
+
+      <!-- FORM -->
+      <div>
+        <!-- Step indicators -->
+        <div class="step-indicator" aria-label="Form steps">
+          <div class="step active"><div class="step-num">1</div> Choose Doctor</div>
+          <div class="step-sep"></div>
+          <div class="step"><div class="step-num">2</div> Your Details</div>
+          <div class="step-sep"></div>
+          <div class="step"><div class="step-num">3</div> Date &amp; Time</div>
+          <div class="step-sep"></div>
+          <div class="step"><div class="step-num">4</div> Confirm</div>
+        </div>
+
+        <div style="background:var(--white);border-radius:var(--radius-xl);padding:2.5rem;box-shadow:var(--shadow-card);">
+          <form id="appointment-form" novalidate aria-label="Appointment booking form">
+
+            <!-- Doctor selection -->
+            <div class="form-group">
+              <label class="form-label">Select Doctor / Speciality *</label>
+              <div class="doctor-selector" id="doc-selector" role="group" aria-label="Select a doctor"></div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="appt-specialty">Reason for Visit *</label>
+              <select class="form-control" id="appt-specialty" name="specialty" required aria-required="true">
+                <option value="">-- Select speciality / concern --</option>
+                <optgroup label="🦴 Orthopedics">
+                  <option value="joint-replacement">Joint Replacement (Hip / Knee / Shoulder)</option>
+                  <option value="sports-medicine">Sports Injury / Arthroscopy</option>
+                  <option value="spine-care">Spine Pain / Cervical / Lumbar</option>
+                  <option value="fracture-trauma">Fracture / Trauma / Emergency</option>
+                  <option value="joint-preservation">Joint Pain / PRP / Biologics</option>
+                  <option value="ortho-general">General Orthopaedic Consultation</option>
+                </optgroup>
+                <optgroup label="✨ Dermatology">
+                  <option value="acne">Acne / Acne Scars</option>
+                  <option value="eczema-psoriasis">Eczema / Psoriasis</option>
+                  <option value="pigmentation">Pigmentation / Melasma / Vitiligo</option>
+                  <option value="hair-loss">Hair Loss / PRP / GFC</option>
+                  <option value="laser">Laser Treatment / Cosmetic Procedure</option>
+                  <option value="skin-surgery">Mole / Cyst / Skin Tag Removal</option>
+                  <option value="derm-general">General Skin Consultation</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="appt-fname">First Name *</label>
+                <input class="form-control" type="text" id="appt-fname" name="fname" placeholder="Ravi" required aria-required="true" autocomplete="given-name"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="appt-lname">Last Name *</label>
+                <input class="form-control" type="text" id="appt-lname" name="lname" placeholder="Mehta" required aria-required="true" autocomplete="family-name"/>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="appt-phone">Mobile Number *</label>
+                <input class="form-control" type="tel" id="appt-phone" name="phone" placeholder="+91 98765 43210" required aria-required="true" autocomplete="tel" pattern="[0-9+\-\s]{10,15}"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="appt-email">Email Address</label>
+                <input class="form-control" type="email" id="appt-email" name="email" placeholder="ravi@example.com" autocomplete="email"/>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label class="form-label" for="appt-date">Preferred Date *</label>
+                <input class="form-control" type="date" id="appt-date" name="date" required aria-required="true"/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="appt-time">Preferred Time Slot *</label>
+                <select class="form-control" id="appt-time" name="time" required aria-required="true">
+                  <option value="">-- Select slot --</option>
+                  <optgroup label="Morning OPD">
+                    <option>9:00 AM – 10:00 AM</option>
+                    <option>10:00 AM – 11:00 AM</option>
+                    <option>11:00 AM – 12:00 PM</option>
+                    <option>12:00 PM – 1:00 PM</option>
+                  </optgroup>
+                  <optgroup label="Evening OPD">
+                    <option>5:00 PM – 6:00 PM</option>
+                    <option>6:00 PM – 7:00 PM</option>
+                    <option>7:00 PM – 8:00 PM</option>
+                    <option>8:00 PM – 9:00 PM</option>
+                  </optgroup>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="appt-age">Age</label>
+              <input class="form-control" type="number" id="appt-age" name="age" placeholder="35" min="1" max="120"/>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="appt-message">Brief Description of Your Concern</label>
+              <textarea class="form-control" id="appt-message" name="message" rows="4" placeholder="E.g. Knee pain for 3 months, difficulty climbing stairs. Previous X-ray done. On pain medication."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label style="display:flex;gap:0.75rem;align-items:flex-start;cursor:pointer;font-size:0.875rem;color:var(--text-muted);line-height:1.6;">
+                <input type="checkbox" required aria-required="true" style="margin-top:3px;flex-shrink:0;accent-color:var(--primary);width:16px;height:16px;"/>
+                I consent to Akshar Hospital collecting and using this information to contact me regarding my appointment. I understand this does not constitute a confirmed booking until confirmed by the hospital team.
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center;" id="appt-submit-btn">
+              📅 Submit Appointment Request
+            </button>
+            <p style="text-align:center;font-size:0.78rem;color:var(--text-muted);margin-top:1rem;">Our team will call you within 2 hours to confirm. Mon–Sat, 9 AM – 8 PM.</p>
+          </form>
+        </div>
+
+        <!-- Walk-in info -->
+        <div style="background:var(--teal-50);border-radius:var(--radius-lg);padding:1.5rem;margin-top:1.5rem;display:flex;gap:1rem;align-items:flex-start;">
+          <span style="font-size:1.5rem;flex-shrink:0;">🚶</span>
+          <div>
+            <p style="font-weight:700;color:var(--primary-dark);font-size:0.9rem;margin-bottom:0.25rem;">Prefer to walk in?</p>
+            <p style="font-size:0.825rem;color:var(--text-muted);line-height:1.6;">You're welcome to visit without an appointment during OPD hours (Mon–Sat, 9 AM–1 PM &amp; 5–9 PM). Our reception team will register you and assign the next available slot.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDEBAR -->
+      <aside class="appt-sidebar" aria-label="Contact and timing information">
+        <div class="info-card">
+          <h3 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1.25rem;font-size:1.1rem;">📞 Quick Contact</h3>
+          <div class="info-row">
+            <div class="info-icon">📞</div>
+            <div><strong>Call Reception</strong><br/><a href="tel:+917940001234" style="color:var(--primary);font-weight:600;">+91-79-4000-1234</a></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">💬</div>
+            <div><strong>WhatsApp</strong><br/><a href="https://wa.me/917940001234" style="color:var(--primary);font-weight:600;" target="_blank" rel="noopener">Chat with us</a></div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">📧</div>
+            <div><strong>Email</strong><br/><a href="mailto:info@aksharhospital.com" style="color:var(--primary);font-weight:600;">info@aksharhospital.com</a></div>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <h3 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1.25rem;font-size:1.1rem;">🕐 OPD Timings</h3>
+          <div style="font-size:0.875rem;color:var(--text-muted);line-height:2.2;">
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed var(--border);padding:0.35rem 0;"><span>Mon – Sat (Morning)</span><strong>9 AM – 1 PM</strong></div>
+            <div style="display:flex;justify-content:space-between;border-bottom:1px dashed var(--border);padding:0.35rem 0;"><span>Mon – Sat (Evening)</span><strong>5 PM – 9 PM</strong></div>
+            <div style="display:flex;justify-content:space-between;padding:0.35rem 0;"><span>Sunday</span><strong style="color:var(--accent);">Closed</strong></div>
+          </div>
+          <div style="margin-top:1rem;padding:0.75rem;background:var(--teal-50);border-radius:var(--radius-sm);font-size:0.78rem;color:var(--primary);font-weight:600;">
+            🚨 Emergency &amp; Trauma: 24 × 7 Open
+          </div>
+        </div>
+
+        <div class="info-card" style="background:linear-gradient(135deg,var(--primary-dark),var(--primary));color:white;">
+          <h3 style="font-family:var(--font-head);font-weight:700;color:white;margin-bottom:0.75rem;font-size:1.1rem;">🛡️ Cashless Treatment</h3>
+          <p style="font-size:0.82rem;color:rgba(255,255,255,0.8);line-height:1.7;margin-bottom:1rem;">We accept 30+ insurance plans. Bring your TPA card at the time of admission and our desk handles the rest.</p>
+          <a href="patient-resources.html#insurance" style="font-size:0.82rem;font-weight:700;color:rgba(255,255,255,0.9);text-decoration:underline;">View all insurers →</a>
+        </div>
+
+        <div class="info-card" style="text-align:center;">
+          <div style="font-size:2.5rem;margin-bottom:0.5rem;">📍</div>
+          <h3 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);font-size:1rem;margin-bottom:0.5rem;">Our Location</h3>
+          <p style="font-size:0.8rem;color:var(--text-muted);line-height:1.7;margin-bottom:1rem;">15, Akshar Complex, Near SG Highway, Bodakdev, Ahmedabad – 380 054</p>
+          <a href="contact.html#map" class="btn btn-secondary btn-sm" id="appt-map-btn">View on Map →</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="footer-root"></div>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-root').innerHTML = renderHeader('');
+  document.getElementById('footer-root').innerHTML = renderFooter();
+
+  // Set min date to today
+  const dateInput = document.getElementById('appt-date');
+  if (dateInput) {
+    const today = new Date();
+    dateInput.min = today.toISOString().split('T')[0];
+    // Default to tomorrow
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
+    dateInput.value = tomorrow.toISOString().split('T')[0];
+  }
+
+  // Pre-fill from URL params
+  const params = new URLSearchParams(window.location.search);
+  const doctorParam = params.get('doctor');
+  const specialtyParam = params.get('specialty');
+  if (specialtyParam) {
+    const sel = document.getElementById('appt-specialty');
+    if (sel) {
+      for (let opt of sel.options) {
+        if (opt.value === specialtyParam) { opt.selected = true; break; }
+      }
+    }
+  }
+
+  // Doctor selector cards
+  const docSel = document.getElementById('doc-selector');
+  docSel.innerHTML = DOCTORS.map(d => `
+    <label class="doc-option ${doctorParam === d.id ? 'selected' : ''}" for="doc-${d.id}">
+      <input type="radio" name="doctor" id="doc-${d.id}" value="${d.id}" ${doctorParam === d.id ? 'checked' : ''} aria-label="${d.name}"/>
+      <img src="${d.photo}" alt="${d.name}" loading="lazy"/>
+      <div>
+        <div class="doc-opt-name">${d.name}</div>
+        <div class="doc-opt-spec">${d.specialty}</div>
+      </div>
+    </label>
+  `).join('') + `
+    <label class="doc-option" for="doc-any" style="grid-column:1/-1;justify-content:center;">
+      <input type="radio" name="doctor" id="doc-any" value="any" ${!doctorParam ? 'checked' : ''} aria-label="Any available doctor"/>
+      <div style="text-align:center;"><div class="doc-opt-name">No Preference</div><div class="doc-opt-spec">Best available specialist</div></div>
+    </label>
+  `;
+
+  // Card selection highlighting
+  docSel.querySelectorAll('.doc-option').forEach(card => {
+    card.addEventListener('click', () => {
+      docSel.querySelectorAll('.doc-option').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      card.querySelector('input').checked = true;
+    });
+  });
+</script>
+</body>
+</html>

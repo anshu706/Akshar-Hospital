@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Dermatology & Skin Care at Akshar Hospital – medical and cosmetic dermatology, laser treatments, hair loss, acne, psoriasis, and more in Ahmedabad."/>
+  <title>Dermatology & Skin Care | Akshar Hospital – Ahmedabad</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>"/>
+  <style>
+    .derm-hero-bg { background:linear-gradient(135deg,#4A1060,#9B3FC7); }
+    .condition-chip-derm { padding:0.4em 0.9em; background:#F5E8F7; color:#7B3F8A; border-radius:99px; font-size:0.8rem; font-weight:600; display:inline-flex; align-items:center; gap:5px; margin:3px; }
+    .treatment-card { background:var(--white); border-radius:var(--radius-lg); padding:1.75rem; box-shadow:var(--shadow-card); border-left:4px solid #9B3FC7; transition:all 0.25s; }
+    .treatment-card:hover { transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+    .before-after-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:1.5rem; }
+    .before-after-card { border-radius:var(--radius-lg); overflow:hidden; box-shadow:var(--shadow-card); }
+    .before-after-label { text-align:center; padding:0.6rem; font-size:0.8rem; font-weight:700; }
+    .spec-layout { display:grid; grid-template-columns:1fr 360px; gap:3.5rem; align-items:start; }
+    @media(max-width:900px){ .spec-layout { grid-template-columns:1fr; } }
+    .derm-sub-section { padding:3.5rem 0; border-bottom:1px solid var(--border); }
+    .derm-sub-section:last-of-type { border:none; }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<main>
+<!-- Page Hero -->
+<section class="page-hero derm-hero-bg" aria-labelledby="derm-heading">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span class="breadcrumb-sep">›</span>
+      <a href="specialities.html">Specialities</a><span class="breadcrumb-sep">›</span>
+      <span aria-current="page">Dermatology</span>
+    </nav>
+    <div class="page-hero-label">✨ Skin Care Excellence</div>
+    <h1 id="derm-heading">Dermatology &amp; Skin Care</h1>
+    <p>Medical and cosmetic dermatology for every skin type — from acne, eczema &amp; psoriasis to advanced laser treatments and hair restoration.</p>
+  </div>
+</section>
+
+<!-- Intro -->
+<section class="section" aria-label="Dermatology overview">
+  <div class="container">
+    <div class="spec-layout">
+      <div class="reveal-left">
+        <div class="section-label">About Our Skin Care Centre</div>
+        <h2 class="section-title">Healthy Skin, Radiant Confidence</h2>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">
+          Our Dermatology &amp; Skin Care Centre offers the full spectrum of medical and aesthetic skin treatments, combining evidence-based medicine with the very latest laser and procedural technologies. Whether you're struggling with a chronic skin condition or seeking cosmetic enhancement, our board-certified dermatologists create personalised treatment plans for lasting results.
+        </p>
+        <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1.5rem;">
+          All cosmetic procedures are performed by qualified doctors — never beauticians — in a clean-room clinical environment with full medical oversight.
+        </p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href="appointment.html?specialty=dermatology" class="btn btn-primary" id="derm-book-btn" style="background:#9B3FC7;box-shadow:0 4px 20px rgba(155,63,199,0.35);">Book Skin Consultation</a>
+          <a href="tel:+917940001234" class="btn btn-secondary" id="derm-call-btn" style="border-color:#9B3FC7;color:#9B3FC7;">📞 Call Now</a>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <img src="images/dr-priya-sharma.jpg" alt="Dermatology consultation at Akshar Hospital" style="border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;" loading="lazy"/>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Sub-Specialities -->
+<section class="section bg-light" aria-labelledby="derm-subs">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title" id="derm-subs">Our Dermatology Services</h2>
+    </div>
+
+    <!-- Medical Dermatology -->
+    <div id="medical-derm" class="derm-sub-section">
+      <div class="spec-layout">
+        <div class="reveal-left">
+          <div style="font-size:2rem;margin-bottom:1rem;">🔬</div>
+          <h3 style="font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:#4A1060;margin-bottom:0.75rem;">Medical Dermatology</h3>
+          <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">
+            Diagnosis and treatment of all acute and chronic skin, hair, and nail diseases using the latest clinical protocols and evidence-based medicine.
+          </p>
+          <div style="margin-bottom:1.5rem;">
+            <span class="condition-chip-derm">✓ Acne &amp; Acne Scars</span>
+            <span class="condition-chip-derm">✓ Eczema (Atopic Dermatitis)</span>
+            <span class="condition-chip-derm">✓ Psoriasis</span>
+            <span class="condition-chip-derm">✓ Vitiligo</span>
+            <span class="condition-chip-derm">✓ Fungal Infections</span>
+            <span class="condition-chip-derm">✓ Urticaria (Hives)</span>
+            <span class="condition-chip-derm">✓ Rosacea</span>
+            <span class="condition-chip-derm">✓ Pigmentation Disorders</span>
+            <span class="condition-chip-derm">✓ Nail Disorders</span>
+            <span class="condition-chip-derm">✓ Contact Dermatitis</span>
+          </div>
+          <a href="appointment.html?specialty=medical-dermatology" class="btn btn-secondary btn-sm" style="border-color:#9B3FC7;color:#9B3FC7;" id="med-derm-book">Book Consultation →</a>
+        </div>
+        <div class="reveal-right">
+          <div style="background:white;border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-card);">
+            <h4 style="font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">Our Diagnostic Tools</h4>
+            <div style="display:flex;flex-direction:column;gap:0.75rem;">
+              <div style="display:flex;gap:0.75rem;align-items:center;font-size:0.875rem;color:var(--text-muted);"><span style="font-size:1.5rem;">🔭</span><span><strong>Dermoscopy</strong> — High-resolution magnified skin imaging for precise lesion diagnosis</span></div>
+              <div style="display:flex;gap:0.75rem;align-items:center;font-size:0.875rem;color:var(--text-muted);"><span style="font-size:1.5rem;">🧪</span><span><strong>Patch Testing</strong> — Identifies contact allergens causing dermatitis</span></div>
+              <div style="display:flex;gap:0.75rem;align-items:center;font-size:0.875rem;color:var(--text-muted);"><span style="font-size:1.5rem;">🔬</span><span><strong>Skin Biopsy</strong> — Gold-standard tissue diagnosis for ambiguous lesions</span></div>
+              <div style="display:flex;gap:0.75rem;align-items:center;font-size:0.875rem;color:var(--text-muted);"><span style="font-size:1.5rem;">💡</span><span><strong>Wood's Lamp</strong> — UV examination for fungal and pigment disorders</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cosmetic Dermatology -->
+    <div id="cosmetic-derm" class="derm-sub-section">
+      <div class="section-header reveal" style="margin-bottom:2rem;">
+        <div style="font-size:2rem;margin-bottom:0.75rem;">💫</div>
+        <h3 style="font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:#4A1060;margin-bottom:0.5rem;">Cosmetic Dermatology</h3>
+        <p style="color:var(--text-muted);max-width:640px;line-height:1.8;">Science-backed aesthetic procedures performed by qualified doctors — no beauticians, no shortcuts. Every treatment is customised to your skin type and goals.</p>
+      </div>
+      <div class="grid-3">
+        <div class="treatment-card reveal delay-1">
+          <div style="font-size:1.8rem;margin-bottom:0.75rem;">💡</div>
+          <h4 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:0.5rem;">Laser Treatments</h4>
+          <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.7;">Q-Switch, Fractional CO2, and Diode laser for pigmentation, resurfacing, acne scars, hair removal, and skin tightening.</p>
+        </div>
+        <div class="treatment-card reveal delay-2">
+          <div style="font-size:1.8rem;margin-bottom:0.75rem;">🧴</div>
+          <h4 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:0.5rem;">Chemical Peels</h4>
+          <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.7;">Superficial to medium-depth peels (Glycolic, Salicylic, Lactic, TCA) for acne, dullness, pigmentation, and skin texture refinement.</p>
+        </div>
+        <div class="treatment-card reveal delay-3">
+          <div style="font-size:1.8rem;margin-bottom:0.75rem;">💉</div>
+          <h4 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:0.5rem;">Botox &amp; Dermal Fillers</h4>
+          <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.7;">FDA-approved injectables for wrinkle reduction, lip augmentation, jawline contouring, and non-surgical facial rejuvenation.</p>
+        </div>
+        <div class="treatment-card reveal delay-1">
+          <div style="font-size:1.8rem;margin-bottom:0.75rem;">✨</div>
+          <h4 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:0.5rem;">HydraFacial &amp; Skin Boosters</h4>
+          <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.7;">Hydra-dermabrasion and HA skin booster injections for deep hydration, brightening, and glowing skin with zero downtime.</p>
+        </div>
+        <div class="treatment-card reveal delay-2">
+          <div style="font-size:1.8rem;margin-bottom:0.75rem;">🌡️</div>
+          <h4 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:0.5rem;">RF Microneedling</h4>
+          <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.7;">Radiofrequency microneedling for acne scars, skin laxity, pore size, and anti-aging with minimal downtime.</p>
+        </div>
+        <div class="treatment-card reveal delay-3">
+          <div style="font-size:1.8rem;margin-bottom:0.75rem;">⚡</div>
+          <h4 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:0.5rem;">HIFU Skin Tightening</h4>
+          <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.7;">High-Intensity Focused Ultrasound — non-surgical facelift technology for lifting and tightening lax skin on face, neck, and body.</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2rem;">
+        <a href="appointment.html?specialty=cosmetic-dermatology" class="btn btn-primary" id="cosm-book-btn" style="background:#9B3FC7;box-shadow:0 4px 20px rgba(155,63,199,0.35);">Book Cosmetic Consultation →</a>
+      </div>
+    </div>
+
+    <!-- Hair & Scalp -->
+    <div id="hair-scalp" class="derm-sub-section">
+      <div class="spec-layout">
+        <div class="reveal-left">
+          <div style="font-size:2rem;margin-bottom:1rem;">💆</div>
+          <h3 style="font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:#4A1060;margin-bottom:0.75rem;">Hair &amp; Scalp Treatments</h3>
+          <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">
+            Our in-house trichologist and dermatologists offer comprehensive hair loss diagnosis and treatment, combining cutting-edge therapies with personalised nutrition and hormonal assessment.
+          </p>
+          <div style="margin-bottom:1.5rem;">
+            <span class="condition-chip-derm">✓ Androgenetic Alopecia (Male/Female pattern baldness)</span>
+            <span class="condition-chip-derm">✓ Alopecia Areata</span>
+            <span class="condition-chip-derm">✓ PRP Therapy</span>
+            <span class="condition-chip-derm">✓ GFC (Growth Factor Concentrate)</span>
+            <span class="condition-chip-derm">✓ Scalp Psoriasis</span>
+            <span class="condition-chip-derm">✓ Dandruff &amp; Seborrheic Dermatitis</span>
+            <span class="condition-chip-derm">✓ LLLT (Low-Level Laser Therapy)</span>
+            <span class="condition-chip-derm">✓ Traction Alopecia</span>
+          </div>
+          <a href="appointment.html?specialty=hair-scalp" class="btn btn-secondary btn-sm" style="border-color:#9B3FC7;color:#9B3FC7;" id="hair-book-btn">Book Hair Consultation →</a>
+        </div>
+        <div class="reveal-right">
+          <div style="background:white;border-radius:var(--radius-lg);padding:2rem;box-shadow:var(--shadow-card);">
+            <h4 style="font-weight:700;color:#4A1060;margin-bottom:1rem;">PRP vs GFC — Which Is Right for You?</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+              <div style="background:#F5E8F7;border-radius:var(--radius-md);padding:1rem;text-align:center;">
+                <div style="font-size:1.5rem;margin-bottom:0.5rem;">💉</div>
+                <div style="font-weight:700;color:#4A1060;font-size:0.9rem;margin-bottom:0.4rem;">PRP</div>
+                <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">Platelet-Rich Plasma<br>3–6 sessions<br>Good for early loss</p>
+              </div>
+              <div style="background:#EDE4F5;border-radius:var(--radius-md);padding:1rem;text-align:center;">
+                <div style="font-size:1.5rem;margin-bottom:0.5rem;">⚗️</div>
+                <div style="font-weight:700;color:#4A1060;font-size:0.9rem;margin-bottom:0.4rem;">GFC</div>
+                <p style="font-size:0.78rem;color:var(--text-muted);line-height:1.6;">Growth Factor Concentrate<br>Higher potency<br>Advanced hair loss</p>
+              </div>
+            </div>
+            <p style="font-size:0.78rem;color:var(--text-muted);margin-top:1rem;text-align:center;">Your doctor will recommend the right therapy after a thorough trichoscopy evaluation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skin Surgery -->
+    <div id="skin-surgery" class="derm-sub-section">
+      <div class="spec-layout">
+        <div class="reveal-left">
+          <div style="font-size:2rem;margin-bottom:1rem;">🏥</div>
+          <h3 style="font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:#4A1060;margin-bottom:0.75rem;">Skin Surgery &amp; Minor Procedures</h3>
+          <p style="color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">
+            Minor dermatosurgical procedures performed under local anaesthesia in a sterile clinical environment. Quick, safe, and with minimal downtime.
+          </p>
+          <div>
+            <span class="condition-chip-derm">✓ Mole Removal</span>
+            <span class="condition-chip-derm">✓ Cyst Excision</span>
+            <span class="condition-chip-derm">✓ Skin Tag Removal</span>
+            <span class="condition-chip-derm">✓ Lipoma Removal</span>
+            <span class="condition-chip-derm">✓ Keloid Treatment</span>
+            <span class="condition-chip-derm">✓ Biopsy</span>
+            <span class="condition-chip-derm">✓ Corn &amp; Callus Treatment</span>
+            <span class="condition-chip-derm">✓ Electrocautery</span>
+          </div>
+          <a href="appointment.html?specialty=skin-surgery" class="btn btn-secondary btn-sm" style="margin-top:1.25rem;border-color:#9B3FC7;color:#9B3FC7;" id="skin-surg-book">Book Procedure →</a>
+        </div>
+        <div class="reveal-right">
+          <div style="background:#F5E8F7;border-radius:var(--radius-lg);padding:2rem;">
+            <h4 style="font-weight:700;color:#4A1060;margin-bottom:0.75rem;">✅ Why Choose Us for Skin Surgery?</h4>
+            <ul style="font-size:0.875rem;color:var(--text-muted);line-height:2;padding-left:1.25rem;">
+              <li>Performed by qualified dermatologist-surgeons</li>
+              <li>Sterile laminar-flow procedure room</li>
+              <li>Minimal scarring with advanced closure techniques</li>
+              <li>Histopathology for all removed lesions</li>
+              <li>Same-day discharge in most cases</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Derm Doctors -->
+<section class="section" aria-labelledby="derm-doctors-heading">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Your Skin Specialists</div>
+      <h2 class="section-title" id="derm-doctors-heading">Our Dermatologists</h2>
+    </div>
+    <div class="grid-2" id="derm-doctors-grid"></div>
+    <div style="text-align:center;margin-top:2.5rem;" class="reveal">
+      <a href="appointment.html?specialty=dermatology" class="btn btn-primary btn-lg" id="derm-final-book" style="background:#9B3FC7;box-shadow:0 4px 20px rgba(155,63,199,0.35);">Book a Skin Consultation Today →</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="footer-root"></div>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-root').innerHTML = renderHeader('specialities');
+  document.getElementById('footer-root').innerHTML = renderFooter();
+
+  const dermDoctors = DOCTORS.filter(d => d.specialty === 'Dermatology');
+  document.getElementById('derm-doctors-grid').innerHTML = dermDoctors.map(d => `
+    <article class="doctor-card" aria-label="${d.name}">
+      <img class="doctor-card-img" src="${d.photo}" alt="${d.name}" loading="lazy"/>
+      <div class="doctor-card-body">
+        <div class="doctor-card-specialty" style="color:#9B3FC7">${d.specialty}</div>
+        <h3 class="doctor-card-name">${d.name}</h3>
+        <p class="doctor-card-qual">${d.qualifications}</p>
+        <div class="doctor-card-footer">
+          <span class="badge badge-accent">Exp: ${d.experience}</span>
+          <a href="appointment.html?doctor=${d.id}" class="btn btn-primary btn-sm" style="background:#9B3FC7;box-shadow:none;">Book →</a>
+        </div>
+      </div>
+    </article>
+  `).join('');
+</script>
+</body>
+</html>

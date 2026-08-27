@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Patient resources at Akshar Hospital – health blog, FAQs, insurance & TPA information for orthopedic and dermatology patients in Ahmedabad."/>
+  <title>Patient Resources | Akshar Hospital – Ahmedabad</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>"/>
+  <style>
+    /* FAQ accordion */
+    .faq-list { display:flex; flex-direction:column; gap:0.75rem; }
+    .faq-item { background:var(--white); border-radius:var(--radius-lg); border:1px solid var(--border); overflow:hidden; transition:border-color 0.2s, box-shadow 0.2s; }
+    .faq-item.open { border-color:var(--primary); box-shadow:var(--shadow-sm); }
+    .faq-q {
+      width:100%; display:flex; align-items:center; justify-content:space-between;
+      padding:1.25rem 1.5rem; font-family:var(--font-head); font-size:0.95rem;
+      font-weight:600; color:var(--primary-dark); text-align:left; cursor:pointer;
+      background:none; border:none; gap:1rem;
+    }
+    .faq-icon { width:28px; height:28px; border-radius:50%; background:var(--teal-50); display:flex; align-items:center; justify-content:center; color:var(--primary); font-size:1.2rem; flex-shrink:0; transition:transform 0.3s, background 0.2s; }
+    .faq-item.open .faq-icon { transform:rotate(45deg); background:var(--primary); color:white; }
+    .faq-a { max-height:0; overflow:hidden; transition:max-height 0.35s ease; }
+    .faq-a-inner { padding:0 1.5rem 1.25rem; font-size:0.9rem; color:var(--text-muted); line-height:1.8; }
+
+    /* Blog filter */
+    .blog-filter { display:flex; gap:0.75rem; margin-bottom:2rem; flex-wrap:wrap; }
+    .blog-filter-btn { padding:0.4em 1.1em; border-radius:99px; border:2px solid var(--border); font-size:0.825rem; font-weight:600; cursor:pointer; background:white; color:var(--text-muted); transition:all 0.2s; }
+    .blog-filter-btn.active, .blog-filter-btn:hover { border-color:var(--primary); color:var(--primary); background:var(--teal-50); }
+
+    /* Tab nav */
+    .res-tabs { display:flex; gap:0; border-bottom:2px solid var(--border); margin-bottom:3rem; }
+    .res-tab { padding:0.8em 1.75em; font-family:var(--font-head); font-size:0.875rem; font-weight:600; cursor:pointer; color:var(--text-muted); background:none; border:none; border-bottom:3px solid transparent; margin-bottom:-2px; transition:all 0.2s; white-space:nowrap; }
+    .res-tab.active { color:var(--primary); border-bottom-color:var(--primary); }
+    .res-panel { display:none; }
+    .res-panel.active { display:block; }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<main>
+<section class="page-hero" aria-labelledby="res-heading">
+  <div class="container">
+    <nav class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><span aria-current="page">Patient Resources</span></nav>
+    <div class="page-hero-label">For Our Patients</div>
+    <h1 id="res-heading">Patient Resources</h1>
+    <p>Health articles from our doctors, answers to common questions, and everything you need to know about insurance and your visit to Akshar Hospital.</p>
+  </div>
+</section>
+
+<section class="section" aria-label="Patient resources content">
+  <div class="container">
+    <!-- Tab navigation -->
+    <div class="res-tabs" role="tablist" aria-label="Patient resource sections">
+      <button class="res-tab active" data-panel="blog" role="tab" aria-selected="true" id="rtab-blog">📖 Health Blog</button>
+      <button class="res-tab" data-panel="faq" role="tab" aria-selected="false" id="rtab-faq">❓ FAQs</button>
+      <button class="res-tab" data-panel="insurance" role="tab" aria-selected="false" id="rtab-ins">🛡️ Insurance &amp; TPA</button>
+      <button class="res-tab" data-panel="prep" role="tab" aria-selected="false" id="rtab-prep">📋 Visit Preparation</button>
+    </div>
+
+    <!-- ── BLOG PANEL ── -->
+    <div class="res-panel active" id="panel-blog" role="tabpanel" aria-labelledby="rtab-blog">
+      <div class="section-header reveal">
+        <div class="section-label">Health Education</div>
+        <h2 class="section-title" id="blog">Health Tips &amp; Articles by Our Doctors</h2>
+        <p class="section-subtitle">Evidence-based health information to help you make informed decisions about your bone, joint, and skin health.</p>
+      </div>
+      <div class="blog-filter" role="group" aria-label="Filter articles">
+        <button class="blog-filter-btn active" data-cat="all">All Articles</button>
+        <button class="blog-filter-btn" data-cat="Orthopedics">🦴 Orthopedics</button>
+        <button class="blog-filter-btn" data-cat="Dermatology">✨ Dermatology</button>
+      </div>
+      <div class="grid-3" id="blog-list"></div>
+
+      <!-- Additional Articles -->
+      <div class="grid-3" style="margin-top:2rem;">
+        <article class="blog-card reveal">
+          <img class="blog-card-img" src="images/dr-kiran-desai.jpg" alt="Understanding Psoriasis" loading="lazy"/>
+          <div class="blog-card-body">
+            <div class="blog-card-meta"><span class="badge badge-accent">Dermatology</span><span>Jul 14, 2026</span><span>⏱ 6 min</span></div>
+            <h3 class="blog-card-title">Understanding Psoriasis: Causes, Triggers &amp; Modern Treatment</h3>
+            <p class="blog-card-excerpt">Psoriasis is a chronic autoimmune skin condition that affects millions. Our dermatologist explains the latest treatments including biologics.</p>
+            <div style="margin-top:1rem;font-size:0.825rem;color:var(--text-muted);">✍️ Dr. Kiran Desai</div>
+          </div>
+        </article>
+        <article class="blog-card reveal delay-1">
+          <img class="blog-card-img" src="images/dr-anita-menon.jpg" alt="ACL Injury Prevention" loading="lazy"/>
+          <div class="blog-card-body">
+            <div class="blog-card-meta"><span class="badge badge-primary">Orthopedics</span><span>Jul 5, 2026</span><span>⏱ 5 min</span></div>
+            <h3 class="blog-card-title">How to Prevent ACL Injuries: A Sports Surgeon's Guide</h3>
+            <p class="blog-card-excerpt">Warm-up routines, strength training, and biomechanical corrections that can cut your risk of ACL tear by up to 50%.</p>
+            <div style="margin-top:1rem;font-size:0.825rem;color:var(--text-muted);">✍️ Dr. Anita Menon</div>
+          </div>
+        </article>
+        <article class="blog-card reveal delay-2">
+          <img class="blog-card-img" src="images/hero.jpg" alt="Nutrition for Bone Health" loading="lazy"/>
+          <div class="blog-card-body">
+            <div class="blog-card-meta"><span class="badge badge-primary">Orthopedics</span><span>Jun 20, 2026</span><span>⏱ 7 min</span></div>
+            <h3 class="blog-card-title">The Best Foods for Bone Health and Joint Longevity</h3>
+            <p class="blog-card-excerpt">Calcium alone isn't enough. Our orthopaedic surgeon shares the 10 nutrients your joints need — and which foods deliver them.</p>
+            <div style="margin-top:1rem;font-size:0.825rem;color:var(--text-muted);">✍️ Dr. Rajesh Patel</div>
+          </div>
+        </article>
+      </div>
+
+      <div style="text-align:center;margin-top:3rem;" class="reveal">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:1rem;">Have a health question? Ask our doctors directly.</p>
+        <a href="appointment.html" class="btn btn-primary" id="blog-book-btn">Book a Consultation</a>
+      </div>
+    </div>
+
+    <!-- ── FAQ PANEL ── -->
+    <div class="res-panel" id="panel-faq" role="tabpanel" aria-labelledby="rtab-faq">
+      <div class="section-header reveal">
+        <div class="section-label">Common Questions</div>
+        <h2 class="section-title" id="faq">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Everything you need to know before, during, and after your visit to Akshar Hospital.</p>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;" class="faq-layout">
+        <div>
+          <h3 style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--teal-100);">🏥 General &amp; Appointments</h3>
+          <div class="faq-list" id="faq-general"></div>
+        </div>
+        <div>
+          <h3 style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--teal-100);">🛡️ Insurance &amp; Billing</h3>
+          <div class="faq-list" id="faq-insurance"></div>
+        </div>
+      </div>
+
+      <!-- Additional FAQs -->
+      <div style="margin-top:3rem;">
+        <h3 style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--teal-100);">🦴 Orthopedics &amp; ✨ Dermatology</h3>
+        <div class="faq-list">
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">How long is recovery after knee replacement?<div class="faq-icon">+</div></button>
+            <div class="faq-a"><div class="faq-a-inner">Most patients walk unaided within 4–6 weeks and return to routine activities by 3 months. Full recovery and return to lower-impact sport is typically by 6–12 months. Our physiotherapy team provides a tailored rehab programme starting the day after surgery.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">How many PRP hair sessions will I need?<div class="faq-icon">+</div></button>
+            <div class="faq-a"><div class="faq-a-inner">Most patients need 4–6 sessions spaced 4 weeks apart for the initial course. Maintenance sessions (every 3–6 months) help sustain results. GFC therapy requires fewer sessions with higher potency. Your trichologist will individualise the plan after trichoscopy evaluation.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Is laser skin treatment painful?<div class="faq-icon">+</div></button>
+            <div class="faq-a"><div class="faq-a-inner">Discomfort is minimal to mild for most laser procedures. We apply a topical anaesthetic cream 30–45 minutes before treatment. Most patients describe it as a warm snapping sensation. More aggressive resurfacing lasers (like fractional CO2) may cause more discomfort, and oral pain relief can be prescribed if needed.</div></div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false">Can I avoid joint replacement with PRP/biologics?<div class="faq-icon">+</div></button>
+            <div class="faq-a"><div class="faq-a-inner">In early to moderate arthritis, biological therapies like PRP and hyaluronic acid injections can significantly reduce pain and delay surgery by several years. In advanced bone-on-bone arthritis, these therapies provide limited benefit and joint replacement remains the most effective long-term solution. Your surgeon will advise the right course after reviewing your X-rays and MRI.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:3rem;padding:2rem;background:var(--teal-50);border-radius:var(--radius-lg);" class="reveal">
+        <p style="font-weight:600;color:var(--primary-dark);margin-bottom:0.5rem;">Still have a question?</p>
+        <p style="color:var(--text-muted);font-size:0.875rem;margin-bottom:1rem;">Our team is happy to help. Reach us by phone, WhatsApp, or the contact form.</p>
+        <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+          <a href="contact.html" class="btn btn-secondary btn-sm" id="faq-contact-btn">Contact Us</a>
+          <a href="https://wa.me/917940001234" class="btn btn-primary btn-sm" target="_blank" rel="noopener" id="faq-wa-btn">💬 WhatsApp Us</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── INSURANCE PANEL ── -->
+    <div class="res-panel" id="panel-insurance" role="tabpanel" aria-labelledby="rtab-ins">
+      <div class="section-header reveal">
+        <div class="section-label">Cashless Treatment</div>
+        <h2 class="section-title" id="insurance">Insurance &amp; TPA Information</h2>
+        <p class="section-subtitle">We work with 30+ insurance companies to make your treatment as hassle-free and affordable as possible.</p>
+      </div>
+
+      <!-- How cashless works -->
+      <div style="background:var(--teal-50);border-radius:var(--radius-xl);padding:2.5rem;margin-bottom:3rem;" class="reveal">
+        <h3 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1.5rem;">📋 How Cashless Treatment Works</h3>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;" class="cashless-steps">
+          <div style="text-align:center;">
+            <div style="width:52px;height:52px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--font-head);font-size:1.25rem;margin:0 auto 0.75rem;">1</div>
+            <p style="font-size:0.825rem;color:var(--text-muted);line-height:1.6;font-weight:600;">Show your insurance card at admission</p>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:52px;height:52px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--font-head);font-size:1.25rem;margin:0 auto 0.75rem;">2</div>
+            <p style="font-size:0.825rem;color:var(--text-muted);line-height:1.6;font-weight:600;">Our TPA desk sends pre-authorisation request</p>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:52px;height:52px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--font-head);font-size:1.25rem;margin:0 auto 0.75rem;">3</div>
+            <p style="font-size:0.825rem;color:var(--text-muted);line-height:1.6;font-weight:600;">Insurer approves your claim limit</p>
+          </div>
+          <div style="text-align:center;">
+            <div style="width:52px;height:52px;background:var(--success);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--font-head);font-size:1.25rem;margin:0 auto 0.75rem;">✓</div>
+            <p style="font-size:0.825rem;color:var(--text-muted);line-height:1.6;font-weight:600;">You only pay any excess — we settle the rest</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents needed -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:3rem;" class="reveal">
+        <div style="background:white;border-radius:var(--radius-lg);padding:1.75rem;box-shadow:var(--shadow-card);">
+          <h4 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">📁 Documents to Bring</h4>
+          <ul style="font-size:0.875rem;color:var(--text-muted);line-height:2;padding-left:1.25rem;">
+            <li>Original insurance / TPA card</li>
+            <li>Valid photo ID (Aadhaar / PAN / Passport)</li>
+            <li>Policy document (soft copy accepted)</li>
+            <li>Doctor's referral letter (if required by insurer)</li>
+            <li>Previous medical reports relevant to treatment</li>
+            <li>Employer letter (if employer-sponsored policy)</li>
+          </ul>
+        </div>
+        <div style="background:white;border-radius:var(--radius-lg);padding:1.75rem;box-shadow:var(--shadow-card);">
+          <h4 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">ℹ️ Important Notes</h4>
+          <ul style="font-size:0.875rem;color:var(--text-muted);line-height:2;padding-left:1.25rem;">
+            <li>Contact our TPA desk before planned admissions</li>
+            <li>Emergency admissions: inform insurer within 24 hrs</li>
+            <li>Pre-existing condition waiting periods apply</li>
+            <li>Cosmetic procedures are generally NOT covered</li>
+            <li>Co-payment as per your policy terms applies</li>
+            <li>Post-discharge claim submission assistance available</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TPA List -->
+      <h3 style="font-family:var(--font-head);font-size:1.2rem;font-weight:700;color:var(--primary-dark);margin-bottom:1.25rem;">Our Empanelled Insurers (30+)</h3>
+      <div id="tpa-list-full" class="insurance-logos reveal"></div>
+
+      <div style="margin-top:2rem;padding:1.25rem 1.5rem;background:#FFF0ED;border-radius:var(--radius-lg);display:flex;gap:0.75rem;" class="reveal">
+        <span style="font-size:1.5rem;">💬</span>
+        <div>
+          <p style="font-weight:600;color:var(--primary-dark);font-size:0.9rem;margin-bottom:0.25rem;">Not sure if your insurer is listed?</p>
+          <p style="font-size:0.825rem;color:var(--text-muted);">Call our TPA desk at <a href="tel:+917940001234" style="color:var(--primary);font-weight:600;">+91-79-4000-1234</a> or <a href="https://wa.me/917940001234" style="color:var(--primary);font-weight:600;">WhatsApp us</a> — we may still have a tie-up. Government schemes (Ayushman Bharat, MA Vatsalya, CGHS, ECHS, ESIC) are also accepted.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── PREP PANEL ── -->
+    <div class="res-panel" id="panel-prep" role="tabpanel" aria-labelledby="rtab-prep">
+      <div class="section-header reveal">
+        <div class="section-label">Be Prepared</div>
+        <h2 class="section-title">Preparing for Your Visit</h2>
+        <p class="section-subtitle">Everything you need to know to make your consultation or admission as smooth as possible.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;">
+        <div style="background:white;border-radius:var(--radius-xl);padding:2rem;box-shadow:var(--shadow-card);" class="reveal delay-1">
+          <div style="font-size:2rem;margin-bottom:1rem;">🏥</div>
+          <h3 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">For OPD Consultation</h3>
+          <ul style="font-size:0.875rem;color:var(--text-muted);line-height:2.2;padding-left:1.25rem;">
+            <li>Arrive 10–15 minutes before your appointment</li>
+            <li>Bring all previous X-rays, MRI, CT, or blood reports</li>
+            <li>Carry a list of current medications</li>
+            <li>Wear comfortable, loose-fitting clothing</li>
+            <li>Bring your insurance / TPA card if applicable</li>
+            <li>Note down your symptoms and duration before the visit</li>
+            <li>A companion is welcome, especially for elderly patients</li>
+          </ul>
+        </div>
+        <div style="background:white;border-radius:var(--radius-xl);padding:2rem;box-shadow:var(--shadow-card);" class="reveal delay-2">
+          <div style="font-size:2rem;margin-bottom:1rem;">🩺</div>
+          <h3 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">For Planned Surgery / Admission</h3>
+          <ul style="font-size:0.875rem;color:var(--text-muted);line-height:2.2;padding-left:1.25rem;">
+            <li>Attend the pre-operative consultation as scheduled</li>
+            <li>Complete all pre-op blood tests and clearances</li>
+            <li>Fast for 6–8 hours before surgery (specific instructions from your surgeon)</li>
+            <li>Remove nail polish and avoid heavy jewellery</li>
+            <li>Arrange for a responsible adult to accompany you</li>
+            <li>Pack minimal personal items (toiletries, phone charger, comfortable clothes)</li>
+            <li>Bring insurance pre-authorisation documents</li>
+          </ul>
+        </div>
+        <div style="background:var(--teal-50);border-radius:var(--radius-xl);padding:2rem;" class="reveal delay-3">
+          <div style="font-size:2rem;margin-bottom:1rem;">✨</div>
+          <h3 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">For Dermatology / Cosmetic Procedures</h3>
+          <ul style="font-size:0.875rem;color:var(--text-muted);line-height:2.2;padding-left:1.25rem;">
+            <li>Arrive with a clean, make-up-free face</li>
+            <li>Avoid sun exposure for 2 weeks before laser treatments</li>
+            <li>Discontinue Vitamin A / Retinol 2 weeks before procedures</li>
+            <li>Mention all current skincare products and medications</li>
+            <li>Inform of any known allergies or past reactions</li>
+            <li>Drink plenty of water the day before any procedure</li>
+          </ul>
+        </div>
+        <div style="background:#FFF0ED;border-radius:var(--radius-xl);padding:2rem;" class="reveal delay-4">
+          <div style="font-size:2rem;margin-bottom:1rem;">📍</div>
+          <h3 style="font-family:var(--font-head);font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">Finding Us</h3>
+          <p style="font-size:0.875rem;color:var(--text-muted);line-height:1.8;margin-bottom:1rem;">15, Akshar Complex, Near SG Highway, Bodakdev, Ahmedabad – 380 054, Gujarat</p>
+          <ul style="font-size:0.875rem;color:var(--text-muted);line-height:2;padding-left:1.25rem;">
+            <li>🚗 Free parking available on premises</li>
+            <li>🚌 AMTS / BRTS stop: SG Highway Junction (5 min walk)</li>
+            <li>🛺 Auto-rickshaw / Cab drop-off at main gate</li>
+            <li>♿ Fully wheelchair accessible building</li>
+          </ul>
+          <a href="contact.html" class="btn btn-secondary btn-sm" style="margin-top:1rem;" id="prep-contact-btn">Get Directions →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<div id="footer-root"></div>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-root').innerHTML = renderHeader('resources');
+  document.getElementById('footer-root').innerHTML = renderFooter();
+
+  // Tab switching
+  document.querySelectorAll('.res-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.res-tab').forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      document.querySelectorAll('.res-panel').forEach(p => p.classList.remove('active'));
+      tab.classList.add('active'); tab.setAttribute('aria-selected','true');
+      document.getElementById('panel-' + tab.dataset.panel).classList.add('active');
+    });
+  });
+
+  // If URL has hash, activate matching tab
+  if (window.location.hash) {
+    const hash = window.location.hash.replace('#','');
+    const tab = document.querySelector(`[data-panel="${hash}"]`);
+    if (tab) tab.click();
+  }
+
+  // Blog
+  const blogList = document.getElementById('blog-list');
+  blogList.innerHTML = BLOG_POSTS.map((post, i) => `
+    <article class="blog-card reveal ${i > 0 ? 'delay-'+i : ''}" data-cat="${post.category}">
+      <img class="blog-card-img" src="${post.img}" alt="${post.title}" loading="lazy"/>
+      <div class="blog-card-body">
+        <div class="blog-card-meta">
+          <span class="badge badge-${post.category === 'Orthopedics' ? 'primary' : 'accent'}">${post.category}</span>
+          <span>${post.date}</span><span>⏱ ${post.readTime}</span>
+        </div>
+        <h3 class="blog-card-title">${post.title}</h3>
+        <p class="blog-card-excerpt">${post.excerpt}</p>
+        <div style="margin-top:1rem;font-size:0.825rem;color:var(--text-muted);">✍️ ${post.author}</div>
+      </div>
+    </article>
+  `).join('');
+
+  document.querySelectorAll('.blog-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.blog-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('#blog-list .blog-card').forEach(card => {
+        card.style.display = (btn.dataset.cat === 'all' || card.dataset.cat === btn.dataset.cat) ? '' : 'none';
+      });
+    });
+  });
+
+  // FAQ general
+  const generalFAQs = FAQS.slice(0, 3);
+  document.getElementById('faq-general').innerHTML = generalFAQs.map(f => `
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">${f.q}<div class="faq-icon">+</div></button>
+      <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>
+    </div>
+  `).join('');
+
+  const insFAQs = FAQS.slice(3);
+  document.getElementById('faq-insurance').innerHTML = insFAQs.map(f => `
+    <div class="faq-item">
+      <button class="faq-q" aria-expanded="false">${f.q}<div class="faq-icon">+</div></button>
+      <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>
+    </div>
+  `).join('');
+
+  // TPA list
+  document.getElementById('tpa-list-full').innerHTML = TPA_LIST.map(t => `<div class="insurance-logo">${t}</div>`).join('');
+</script>
+</body>
+</html>

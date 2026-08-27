@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Detailed doctor profile at Akshar Hospital – qualifications, expertise, consultation timings, and online appointment booking."/>
+  <title>Doctor Profile | Akshar Hospital</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>"/>
+  <style>
+    .profile-hero { padding:100px 0 60px; background:linear-gradient(135deg,var(--primary-dark),var(--primary)); color:white; margin-top:var(--header-h); }
+    .profile-layout { display:grid; grid-template-columns:340px 1fr; gap:3rem; align-items:start; margin-top:-80px; position:relative; z-index:1; }
+    .profile-photo { border-radius:var(--radius-xl); box-shadow:var(--shadow-xl); width:100%; aspect-ratio:3/4; object-fit:cover; object-position:center top; }
+    .profile-card { background:var(--white); border-radius:var(--radius-xl); padding:2.5rem; box-shadow:var(--shadow-lg); }
+    .expertise-chip { display:inline-flex; align-items:center; gap:6px; padding:0.4em 1em; background:var(--teal-50); color:var(--primary); border-radius:99px; font-size:0.8rem; font-weight:600; margin:3px; }
+    .schedule-row { display:flex; justify-content:space-between; align-items:center; padding:0.75rem 0; border-bottom:1px solid var(--border); font-size:0.875rem; }
+    @media(max-width:768px){
+      .profile-layout { grid-template-columns:1fr; margin-top:-40px; }
+      .profile-photo { max-height:350px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<main>
+  <div id="doctor-content"></div>
+</main>
+
+<div id="footer-root"></div>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-root').innerHTML = renderHeader('about');
+  document.getElementById('footer-root').innerHTML = renderFooter();
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id') || DOCTORS[0].id;
+  const doc = DOCTORS.find(d => d.id === id) || DOCTORS[0];
+
+  document.title = `${doc.name} | Akshar Hospital`;
+  document.querySelector('meta[name="description"]').content = `${doc.name} – ${doc.designation}. ${doc.qualifications}. Book a consultation at Akshar Hospital, Ahmedabad.`;
+
+  document.getElementById('doctor-content').innerHTML = `
+    <section class="profile-hero" aria-labelledby="doc-name">
+      <div class="container">
+        <nav class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="doctors.html">Doctors</a><span class="breadcrumb-sep">›</span><span aria-current="page">${doc.name}</span></nav>
+        <div class="page-hero-label">${doc.specialty}</div>
+        <h1 id="doc-name" style="font-size:2.5rem;">${doc.name}</h1>
+        <p style="opacity:0.8;">${doc.designation}</p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Doctor profile details">
+      <div class="container">
+        <div class="profile-layout">
+          <!-- Left: Photo + Booking -->
+          <div>
+            <img class="profile-photo reveal-left" src="${doc.photo}" alt="${doc.name} – ${doc.specialty} at Akshar Hospital" loading="lazy"/>
+            <div class="card" style="margin-top:1.5rem;padding:1.5rem;" aria-label="Book appointment">
+              <h3 style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">📅 Book with ${doc.name}</h3>
+              <div class="schedule-row"><span>Consultation Days</span><strong>${doc.days}</strong></div>
+              <div class="schedule-row"><span>Morning OPD</span><strong>${doc.timing.split('|')[0].trim()}</strong></div>
+              <div class="schedule-row"><span>Evening OPD</span><strong>${doc.timing.split('|')[1]?.trim() || '–'}</strong></div>
+              <div class="schedule-row" style="border:none;"><span>Languages</span><strong>${doc.languages}</strong></div>
+              <div style="display:flex;flex-direction:column;gap:0.75rem;margin-top:1.5rem;">
+                <a href="appointment.html?doctor=${doc.id}" class="btn btn-primary" style="justify-content:center;" id="profile-book-btn">Book Appointment</a>
+                <a href="tel:+917940001234" class="btn btn-secondary" style="justify-content:center;" id="profile-call-btn">📞 Call Reception</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Details -->
+          <div class="reveal-right">
+            <!-- Bio -->
+            <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
+              <h2 style="font-family:var(--font-head);font-size:1.25rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">About ${doc.name}</h2>
+              <div style="display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+                <div style="text-align:center;padding:0.75rem 1.25rem;background:var(--teal-50);border-radius:var(--radius-md);">
+                  <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--primary);">${doc.experience}</div>
+                  <div style="font-size:0.75rem;color:var(--text-muted);">Experience</div>
+                </div>
+                <div style="text-align:center;padding:0.75rem 1.25rem;background:#FFF0ED;border-radius:var(--radius-md);">
+                  <div style="font-family:var(--font-head);font-size:1.5rem;font-weight:800;color:var(--accent);">${doc.qualifications.split(',').length}</div>
+                  <div style="font-size:0.75rem;color:var(--text-muted);">Qualifications</div>
+                </div>
+              </div>
+              <p style="font-size:0.875rem;font-weight:600;color:var(--text-muted);margin-bottom:0.5rem;">Qualifications</p>
+              <p style="font-weight:600;color:var(--primary-dark);margin-bottom:1rem;">${doc.qualifications}</p>
+              <p style="color:var(--text-muted);line-height:1.8;font-size:0.95rem;">${doc.bio}</p>
+            </div>
+
+            <!-- Expertise -->
+            <div class="card" style="padding:2rem;margin-bottom:1.5rem;">
+              <h2 style="font-family:var(--font-head);font-size:1.25rem;font-weight:700;color:var(--primary-dark);margin-bottom:1rem;">Areas of Expertise</h2>
+              <div>
+                ${doc.expertise.map(e => `<span class="expertise-chip">✓ ${e}</span>`).join('')}
+              </div>
+            </div>
+
+            <!-- Related Speciality Link -->
+            <div class="card" style="padding:2rem;background:linear-gradient(135deg,var(--teal-50),white);">
+              <h2 style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.5rem;">Explore ${doc.specialty}</h2>
+              <p style="font-size:0.875rem;color:var(--text-muted);margin-bottom:1rem;">Learn more about the conditions we treat and the procedures we offer in ${doc.specialty}.</p>
+              <a href="${doc.specialty === 'Orthopedics' ? 'orthopedics.html' : 'dermatology.html'}" class="btn btn-secondary btn-sm" id="profile-specialty-link">View ${doc.specialty} Services →</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Other Doctors -->
+        <div style="margin-top:4rem;" class="reveal">
+          <h2 style="font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:var(--primary-dark);margin-bottom:2rem;">Other Specialists</h2>
+          <div class="grid-4">
+            ${DOCTORS.filter(d => d.id !== doc.id).map(d => `
+              <a href="doctor-profile.html?id=${d.id}" class="doctor-card" style="text-decoration:none;">
+                <img class="doctor-card-img" src="${d.photo}" alt="${d.name}" loading="lazy"/>
+                <div class="doctor-card-body">
+                  <div class="doctor-card-specialty">${d.specialty}</div>
+                  <h3 class="doctor-card-name">${d.name}</h3>
+                  <p class="doctor-card-qual">${d.qualifications.split(',')[0]}</p>
+                </div>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </section>
+  `;
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Meet the specialist doctors at Akshar Hospital – expert orthopedic surgeons and dermatologists in Ahmedabad. Book a consultation today."/>
+  <title>Our Doctors | Akshar Hospital – Ahmedabad</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>"/>
+  <style>
+    .filter-tabs { display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+    .filter-tab { padding:0.5em 1.25em; border-radius:99px; border:2px solid var(--border); font-size:0.875rem; font-weight:600; cursor:pointer; transition:all 0.2s; background:white; color:var(--text-muted); }
+    .filter-tab.active, .filter-tab:hover { border-color:var(--primary); color:var(--primary); background:var(--teal-50); }
+    .doctor-profile-card { background:var(--white); border-radius:var(--radius-xl); overflow:hidden; box-shadow:var(--shadow-card); display:grid; grid-template-columns:280px 1fr; transition:all 0.25s; }
+    .doctor-profile-card:hover { box-shadow:var(--shadow-lg); transform:translateY(-4px); }
+    .doctor-profile-card-img { width:100%; height:100%; object-fit:cover; object-position:center top; min-height:320px; }
+    .doctor-profile-card-body { padding:2rem; }
+    .expertise-list { display:flex; flex-wrap:wrap; gap:0.5rem; margin:1rem 0; }
+    .expertise-tag { padding:0.3em 0.8em; background:var(--teal-50); color:var(--primary); border-radius:99px; font-size:0.75rem; font-weight:600; }
+    .timing-row { display:flex; gap:0.75rem; align-items:flex-start; font-size:0.875rem; color:var(--text-muted); margin-bottom:0.5rem; }
+    @media(max-width:680px){
+      .doctor-profile-card { grid-template-columns:1fr; }
+      .doctor-profile-card-img { min-height:280px; max-height:320px; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="header-root"></div>
+
+<main>
+<section class="page-hero" aria-labelledby="doctors-page-heading">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">›</span><a href="about.html">About</a><span class="breadcrumb-sep">›</span><span aria-current="page">Our Doctors</span></nav>
+    <div class="page-hero-label">Expert Medical Team</div>
+    <h1 id="doctors-page-heading">Meet Our Specialist Doctors</h1>
+    <p>Board-certified specialists with fellowship training, delivering personalised care across Orthopedics and Dermatology.</p>
+  </div>
+</section>
+
+<section class="section" aria-labelledby="doctors-list-heading">
+  <div class="container">
+    <h2 class="sr-only" id="doctors-list-heading">Doctor Profiles</h2>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs" role="tablist" aria-label="Filter doctors by specialty">
+      <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All Doctors</button>
+      <button class="filter-tab" data-filter="Orthopedics" role="tab" aria-selected="false">🦴 Orthopedics</button>
+      <button class="filter-tab" data-filter="Dermatology" role="tab" aria-selected="false">✨ Dermatology</button>
+    </div>
+
+    <div id="doctors-list" style="display:flex;flex-direction:column;gap:2rem;"></div>
+  </div>
+</section>
+</main>
+
+<div id="footer-root"></div>
+<script src="js/data.js"></script>
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
+<script>
+  document.getElementById('header-root').innerHTML = renderHeader('about');
+  document.getElementById('footer-root').innerHTML = renderFooter();
+
+  function renderDoctors(filter = 'all') {
+    const list = document.getElementById('doctors-list');
+    const filtered = filter === 'all' ? DOCTORS : DOCTORS.filter(d => d.specialty === filter);
+    list.innerHTML = filtered.map(d => `
+      <article class="doctor-profile-card reveal" aria-label="${d.name}, ${d.specialty}">
+        <img class="doctor-profile-card-img" src="${d.photo}" alt="${d.name} – ${d.designation}" loading="lazy" width="280" height="320"/>
+        <div class="doctor-profile-card-body">
+          <span class="badge badge-${d.specialty === 'Orthopedics' ? 'primary' : 'accent'}" style="margin-bottom:0.75rem">${d.specialty}</span>
+          <h2 style="font-family:var(--font-head);font-size:1.5rem;font-weight:700;color:var(--primary-dark);margin-bottom:0.25rem">${d.name}</h2>
+          <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:0.25rem">${d.designation}</p>
+          <p style="color:var(--text-muted);font-size:0.825rem;margin-bottom:1rem;">${d.qualifications}</p>
+          <div class="expertise-list" aria-label="Areas of expertise">
+            ${d.expertise.map(e => `<span class="expertise-tag">${e}</span>`).join('')}
+          </div>
+          <div>
+            <div class="timing-row"><span>📅</span><span><strong>Consultation Days:</strong> ${d.days}</span></div>
+            <div class="timing-row"><span>🕐</span><span><strong>Timings:</strong> ${d.timing}</span></div>
+            <div class="timing-row"><span>🌐</span><span><strong>Languages:</strong> ${d.languages}</span></div>
+            <div class="timing-row"><span>⭐</span><span><strong>Experience:</strong> ${d.experience}</span></div>
+          </div>
+          <div style="display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap">
+            <a href="doctor-profile.html?id=${d.id}" class="btn btn-secondary btn-sm" aria-label="Full profile of ${d.name}">View Full Profile</a>
+            <a href="appointment.html?doctor=${d.id}" class="btn btn-primary btn-sm" aria-label="Book appointment with ${d.name}">
+              📅 Book Appointment
+            </a>
+          </div>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  renderDoctors();
+
+  // Filter logic
+  document.querySelectorAll('.filter-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-tab').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected','true');
+      renderDoctors(btn.dataset.filter);
+    });
+  });
+</script>
+</body>
+</html>
